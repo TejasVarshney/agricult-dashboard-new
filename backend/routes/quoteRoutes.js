@@ -22,12 +22,14 @@ router.get("/:id/status", getBidStatus);
 
 // Post routes
 router.post("/", createQuote);
+// Add these new routes for approve/reject
+
 
 // Put routes
 router.put("/:id", updateQuote);
-router.put("/:id/status", updateQuoteStatus);
+router.put("/:id/:status", updateQuoteStatus);
 
 // Delete routes
 router.delete("/:id", deleteQuote);
 
-export default router; 
+export default router;

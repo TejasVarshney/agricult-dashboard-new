@@ -35,7 +35,7 @@ const BidsPage = () => {
     setIsProcessing(true);
     try {
       const response = await fetch(`${backendLink}/api/quotes/${bidId}/${action}`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         }
@@ -177,7 +177,7 @@ const BidsPage = () => {
                     </button>
                     
                     <button
-                      onClick={() => handleBidAction(bid.id, 'reject')}
+                      onClick={() => handleBidAction(bid.id, 'rejected')}
                       disabled={isProcessing || bid.status !== 'pending'}
                       className={`flex items-center gap-1 px-2 py-1 text-xs rounded transition-colors
                         ${bid.status === 'pending'
@@ -189,7 +189,7 @@ const BidsPage = () => {
                       Reject
                     </button>
                     <button
-                      onClick={() => handleBidAction(bid.id, 'approve')}
+                      onClick={() => handleBidAction(bid.id, 'approved')}
                       disabled={isProcessing || bid.status !== 'pending'}
                       className={`flex items-center gap-1 px-2 py-1 text-xs rounded transition-colors
                         ${bid.status === 'pending'

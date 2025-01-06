@@ -1,4 +1,18 @@
 import { supabase } from "../config/supabase.js";
+import cors from 'cors';
+import express from 'express';
+
+const router = express.Router();
+
+// Configure CORS
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+router.use(cors(corsOptions));
 
 // Get all quotes
 export const getAllQuotes = async (req, res) => {
@@ -140,16 +154,15 @@ export const getBidStatus = async (req, res) => {
 };
 
 // Update quote status
+// updateQuoteStatus function in quoteController.js
 export const updateQuoteStatus = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { status } = req.body;
-
+    const { id, status } = req.params;
     console.log('Updating quote status:', { id, status });
 
     // Validate status
     const validStatuses = ['approved', 'rejected', 'pending'];
-    if (!validStatuses.includes(status)) {
+    if (!validStatuses.includes(status.toLowerCase())) {
       return res.status(400).json({ 
         error: "Invalid status. Status must be 'approved', 'rejected', or 'pending'" 
       });
@@ -170,28 +183,35 @@ export const updateQuoteStatus = async (req, res) => {
     if (!existingQuote) {
       return res.status(404).json({ error: "Quote not found" });
     }
+    else {
+      console.log('Quote found:', existingQuote);
+    }
 
-    // Then update the quote
+    // Update the quote - Remove .single() and handle array response
     const { data, error: updateError } = await supabase
       .from("quotes")
       .update({ 
-        status: status,
+        status: status.toLowerCase(),
         updated_at: new Date().toISOString() 
       })
       .eq("id", id)
-      .select()
-      .single();
+      .select();  // Removed .single()
 
     if (updateError) {
       console.error('Error updating quote:', updateError);
       throw updateError;
     }
 
+    // Check if we got updated data
+    if (!data || data.length === 0) {
+      return res.status(404).json({ error: "Failed to update quote" });
+    }
+
     console.log('Quote updated successfully:', data);
-    res.json({ data });
+    res.json({ data: data[0] }); // Return the first item from the array
 
   } catch (error) {
     console.error('Error updating quote status:', error);
     res.status(500).json({ error: error.message });
   }
-}; 
+};
