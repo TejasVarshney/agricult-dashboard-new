@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Calendar, ChevronDown, ChevronUp, SlidersHorizontal } from 'lucide-react';
-<<<<<<< HEAD
-=======
 
->>>>>>> 5af6e45 (Solve RFQs)
 const SearchBar = ({ searchQuery, onSearchChange }) => (
   <div className="flex-1 relative">
     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -16,10 +13,7 @@ const SearchBar = ({ searchQuery, onSearchChange }) => (
     />
   </div>
 );
-<<<<<<< HEAD
-=======
 
->>>>>>> 5af6e45 (Solve RFQs)
 const TabFilter = ({ activeTab, setActiveTab }) => (
   <div className="inline-flex p-1 space-x-1 bg-white rounded-lg border shadow-sm">
     {["all", "active", "pending", "closed"].map((tab) => (
@@ -39,10 +33,7 @@ const TabFilter = ({ activeTab, setActiveTab }) => (
     ))}
   </div>
 );
-<<<<<<< HEAD
-=======
 
->>>>>>> 5af6e45 (Solve RFQs)
 const DateFilter = ({ dateRange, onDateChange }) => (
   <div className="flex items-center gap-2">
     <div className="relative">
@@ -66,10 +57,7 @@ const DateFilter = ({ dateRange, onDateChange }) => (
     </div>
   </div>
 );
-<<<<<<< HEAD
-=======
 
->>>>>>> 5af6e45 (Solve RFQs)
 const SearchAndFilters = ({ 
   activeTab, 
   setActiveTab, 
@@ -79,10 +67,7 @@ const SearchAndFilters = ({
   onDateChange 
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-<<<<<<< HEAD
-=======
 
->>>>>>> 5af6e45 (Solve RFQs)
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200">
       {/* Main Search Bar and Filter Toggle */}
@@ -101,10 +86,7 @@ const SearchAndFilters = ({
           )}
         </button>
       </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 5af6e45 (Solve RFQs)
       {/* Expandable Filter Section */}
       <div
         className={`
@@ -118,10 +100,7 @@ const SearchAndFilters = ({
             <span className="text-sm font-medium text-gray-700">Status</span>
             <TabFilter activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 5af6e45 (Solve RFQs)
           {/* Date Filter */}
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-gray-700">Date Range</span>
@@ -132,8 +111,5 @@ const SearchAndFilters = ({
     </div>
   );
 };
-<<<<<<< HEAD
-=======
 
->>>>>>> 5af6e45 (Solve RFQs)
 export default SearchAndFilters; 
