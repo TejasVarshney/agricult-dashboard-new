@@ -194,5 +194,9 @@ const QuotesSection = ({ selectedRfq, quotes, formatDate, formatCurrency, onQuot
   );
 };
 
+<<<<<<< HEAD
 export default QuotesSection; 
  
+=======
+export default QuotesSection; 
+>>>>>>> 5af6e45 (Solve RFQs)
