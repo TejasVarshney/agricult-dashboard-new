@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import StatusBadge from './components/StatusBadge';
+// import StatusBadge from './components/StatusBadge';
 import SearchAndFilters from './components/SearchAndFilters';
 import RFQsList from './components/RFQsList';
 import StatsHeader from './components/StatsHeader';
