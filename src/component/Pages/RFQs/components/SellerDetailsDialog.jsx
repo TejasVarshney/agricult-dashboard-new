@@ -125,4 +125,8 @@ const SellerDetailsDialog = ({ sellerId, onClose }) => {
   );
 };
 
+<<<<<<< HEAD
 export default SellerDetailsDialog;
+=======
+export default SellerDetailsDialog; 
+>>>>>>> 5af6e45 (Solve RFQs)
