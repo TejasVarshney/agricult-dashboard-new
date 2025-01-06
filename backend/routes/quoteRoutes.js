@@ -30,7 +30,4 @@ router.put("/:id/status", updateQuoteStatus);
 // Delete routes
 router.delete("/:id", deleteQuote);
 
-// Update route for quote status
-router.patch("/:id", updateQuoteStatus);
-
 export default router; 

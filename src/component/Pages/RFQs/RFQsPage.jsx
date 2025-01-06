@@ -162,6 +162,38 @@ const RFQsPage = () => {
     }
   };
 
+  const handleStatusUpdate = async (rfqId, newStatus) => {
+    try {
+      const response = await fetch(`${backendLink}/api/rfqs/${rfqId}/status`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update RFQ status');
+      }
+
+      const data = await response.json();
+      
+      // Update the local state to reflect the change
+      setRfqs(prevRfqs => 
+        prevRfqs.map(rfq => 
+          rfq.id === rfqId ? { ...rfq, status: newStatus } : rfq
+        )
+      );
+
+      // Show success message (you can implement your own notification system)
+      console.log(`RFQ ${rfqId} status updated to ${newStatus}`);
+
+    } catch (error) {
+      console.error('Error updating RFQ status:', error);
+      // Show error message to user
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <StatsHeader filteredRfqs={filteredRfqs} rfqs={rfqs} />

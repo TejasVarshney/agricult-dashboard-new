@@ -147,27 +147,49 @@ export const updateQuoteStatus = async (req, res) => {
 
     console.log('Updating quote status:', { id, status });
 
-    const { data, error } = await supabase
+    // Validate status
+    const validStatuses = ['approved', 'rejected', 'pending'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ 
+        error: "Invalid status. Status must be 'approved', 'rejected', or 'pending'" 
+      });
+    }
+
+    // First check if the quote exists
+    const { data: existingQuote, error: checkError } = await supabase
+      .from("quotes")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (checkError) {
+      console.error('Error checking quote:', checkError);
+      return res.status(404).json({ error: "Quote not found" });
+    }
+
+    if (!existingQuote) {
+      return res.status(404).json({ error: "Quote not found" });
+    }
+
+    // Then update the quote
+    const { data, error: updateError } = await supabase
       .from("quotes")
       .update({ 
-        status,
+        status: status,
         updated_at: new Date().toISOString() 
       })
       .eq("id", id)
       .select()
       .single();
 
-    if (error) {
-      console.error('Supabase error:', error);
-      throw error;
-    }
-    
-    if (!data) {
-      return res.status(404).json({ error: "Quote not found" });
+    if (updateError) {
+      console.error('Error updating quote:', updateError);
+      throw updateError;
     }
 
     console.log('Quote updated successfully:', data);
     res.json({ data });
+
   } catch (error) {
     console.error('Error updating quote status:', error);
     res.status(500).json({ error: error.message });

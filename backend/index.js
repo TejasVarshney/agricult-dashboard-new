@@ -5,6 +5,7 @@ import buyerRoutes from "./routes/buyerRoutes.js";
 import sellerRoutes from "./routes/sellerRoutes.js";
 import rfqRoutes from "./routes/rfqRoutes.js";
 import quoteRoutes from "./routes/quoteRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
 
 // Initialize environment variables
 dotenv.config();
@@ -21,6 +22,7 @@ app.use("/api/buyers", buyerRoutes);
 app.use("/api/sellers", sellerRoutes);
 app.use("/api/rfqs", rfqRoutes);
 app.use("/api/quotes", quoteRoutes);
+app.use("/api/chat", chatRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

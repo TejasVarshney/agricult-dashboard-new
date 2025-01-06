@@ -24,13 +24,10 @@ router.get("/:id", getRfqById);
 // Post routes
 router.post("/", createRfq);
 
-// Delete routes
-router.delete("/:id", deleteRfq);
-
 // Put routes
 router.put("/:id/status", updateRfqStatus);
 
-// Update route for RFQ status
-router.patch("/:id", updateRfqStatus);
+// Delete routes
+router.delete("/:id", deleteRfq);
 
 export default router; 

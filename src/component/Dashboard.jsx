@@ -5,6 +5,7 @@ import HomePage from './Pages/HomePage/HomePage';
 import RFQsPage from './Pages/RFQs/RFQsPage';
 import UsersPage from './Pages/Users/UsersPage';
 import BidsPage from './Pages/Bids/BidsPage';
+import AudioMessagesPage from './Pages/AudioMessages/AudioMessagesPage';
 
 const Dashboard = () => {
   return (
@@ -18,6 +19,7 @@ const Dashboard = () => {
               <Route path="/rfqs" element={<RFQsPage />} />
               <Route path="/users" element={<UsersPage />} />
               <Route path="/bids" element={<BidsPage />} />
+              <Route path="/audio-messages" element={<AudioMessagesPage />} />
               {/* Add more routes as needed */}
             </Routes>
           </div>

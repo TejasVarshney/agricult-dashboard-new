@@ -134,27 +134,49 @@ export const updateRfqStatus = async (req, res) => {
 
     console.log('Updating RFQ status:', { id, status });
 
-    const { data, error } = await supabase
+    // Validate status
+    const validStatuses = ['approved', 'rejected', 'pending'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ 
+        error: "Invalid status. Status must be 'approved', 'rejected', or 'pending'" 
+      });
+    }
+
+    // First check if the RFQ exists
+    const { data: existingRfq, error: checkError } = await supabase
+      .from("rfqs")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (checkError) {
+      console.error('Error checking RFQ:', checkError);
+      return res.status(404).json({ error: "RFQ not found" });
+    }
+
+    if (!existingRfq) {
+      return res.status(404).json({ error: "RFQ not found" });
+    }
+
+    // Then update the RFQ
+    const { data, error: updateError } = await supabase
       .from("rfqs")
       .update({ 
-        status,
+        status: status,
         updated_at: new Date().toISOString() 
       })
       .eq("id", id)
       .select()
       .single();
 
-    if (error) {
-      console.error('Supabase error:', error);
-      throw error;
-    }
-    
-    if (!data) {
-      return res.status(404).json({ error: "RFQ not found" });
+    if (updateError) {
+      console.error('Error updating RFQ:', updateError);
+      throw updateError;
     }
 
     console.log('RFQ updated successfully:', data);
     res.json({ data });
+
   } catch (error) {
     console.error('Error updating RFQ status:', error);
     res.status(500).json({ error: error.message });
