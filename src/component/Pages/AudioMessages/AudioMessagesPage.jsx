@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Play, Pause, Check, X, SlidersHorizontal, Search, Volume2 } from 'lucide-react';
 import StatusBadge from '../RFQs/components/StatusBadge';
 
-const backendLink = "http://localhost:1234";
+const backendLink = "https://agricult-dashboard-new.onrender.com/";
 
 const AudioMessagesPage = () => {
   const [messages, setMessages] = useState([]);
