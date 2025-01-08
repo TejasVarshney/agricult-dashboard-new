@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { X, Building2, User, Mail, Phone, MapPin, Receipt } from 'lucide-react';
 
-const backendLink = "http://localhost:1234";
+const backendLink = "https://agricult-dashboard-new.onrender.com";
 
 const SellerDetailsDialog = ({ sellerId, onClose }) => {
   const [seller, setSeller] = useState(null);
