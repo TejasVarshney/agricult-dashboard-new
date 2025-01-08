@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Users as UsersIcon, MapPin, Mail, Phone, Building2 } from 'lucide-react';
 
-const backendLink = "http://localhost:1234";
+const backendLink = "https://agricult-dashboard-new.onrender.com";
 
 const UserCard = ({ user, type }) => (
   <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-all">
