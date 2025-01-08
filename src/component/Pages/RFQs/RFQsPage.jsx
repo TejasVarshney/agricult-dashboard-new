@@ -6,7 +6,7 @@ import StatsHeader from './components/StatsHeader';
 import QuotesSection from './components/QuotesSection';
 import { LoadingState, EmptyState } from './components/LoadingAndEmptyStates';
 
-const backendLink = "http://localhost:1234";
+const backendLink = "https://agricult-dashboard-new.onrender.com";
 
 const RFQsPage = () => {
   const [loading, setLoading] = useState(true);
