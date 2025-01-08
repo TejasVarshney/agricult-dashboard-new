@@ -22,7 +22,7 @@ ChartJS.register(
   Colors
 );
 
-const backendLink = "http://localhost:1234";
+const backendLink = "https://agricult-dashboard-new.onrender.com";
 
 const HomePage = () => {
   const [stats, setStats] = useState({
