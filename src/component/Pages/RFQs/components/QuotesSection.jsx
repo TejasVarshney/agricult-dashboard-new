@@ -3,7 +3,7 @@ import StatusBadge from './StatusBadge';
 import SellerDetailsDialog from './SellerDetailsDialog';
 import { User, Check, X } from 'lucide-react';
 
-const backendLink = "https://agricult-dashboard-new.onrender.com/";
+const backendLink = "https://agricult-dashboard-new.onrender.com";
 
 const QuotesSection = ({ selectedRfq, quotes, formatDate, formatCurrency, onQuoteUpdate }) => {
   const [selectedSellerId, setSelectedSellerId] = useState(null);
