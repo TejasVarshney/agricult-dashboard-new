@@ -5,7 +5,7 @@ import { User, Check, X, FileText } from 'lucide-react';
 import BidsFilterBar from './components/BidsFilterBar';
 import RFQDetailsDialog from './components/RFQDetailsDialog';
 
-const backendLink = "http://localhost:1234";
+const backendLink = "https://agricult-dashboard-new.onrender.com";
 
 const BidsPage = () => {
   const [bids, setBids] = useState([]);
