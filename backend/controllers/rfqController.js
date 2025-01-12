@@ -20,7 +20,7 @@ export const getActiveRfqsCount = async (req, res) => {
     const { count, error } = await supabase
       .from("rfqs")
       .select("*", { count: "exact", head: true })
-      .eq("status", true);
+      .eq("status", "active");
 
     if (error) throw error;
     res.json({ count });
@@ -35,7 +35,7 @@ export const getEndedRfqsCount = async (req, res) => {
     const { count, error } = await supabase
       .from("rfqs")
       .select("*", { count: "exact", head: true })
-      .eq("status", false);
+      .eq("status", "closed");
 
     if (error) throw error;
     res.json({ count });

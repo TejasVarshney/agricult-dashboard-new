@@ -41,15 +41,31 @@ const QuotesSection = ({ selectedRfq, quotes, formatDate, formatCurrency, onQuot
   const handleQuoteAction = async (quoteId, action) => {
     setIsProcessing(true);
     try {
-      const response = await fetch(`${backendLink}/api/quotes/${quoteId}/${action}`, {
+      // First update the quote status
+      const quoteResponse = await fetch(`${backendLink}/api/quotes/${quoteId}/${action}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         }
       });
       
-      if (!response.ok) {
+      if (!quoteResponse.ok) {
         throw new Error(`Failed to ${action} quote`);
+      }
+
+      // If quote was approved, also update RFQ status
+      if (action === 'approve' && selectedRfq) {
+        const rfqResponse = await fetch(`${backendLink}/api/rfqs/${selectedRfq.id}/status`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ status: 'approved' })
+        });
+
+        if (!rfqResponse.ok) {
+          throw new Error('Failed to update RFQ status');
+        }
       }
 
       // Refresh quotes list after successful action
