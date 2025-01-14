@@ -5,7 +5,8 @@ import {
   Package,
   Users,
   Gavel,
-  Mic
+  Mic,
+  Image
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -17,6 +18,8 @@ const Sidebar = () => {
     { name: 'RFQs', icon: <Package size={20} />, path: '/rfqs' },
     { name: 'Bids', icon: <Gavel size={20} />, path: '/bids' },
     { name: 'Audio Messages', icon: <Mic size={20} />, path: '/audio-messages' },
+    { name: 'Image Messages', icon: <Image size={20} />, path: '/image-messages' },
+    
     // Add more navigation items as needed
   ];
 

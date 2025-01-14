@@ -106,3 +106,18 @@ export const updateMessageStatus = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 }; 
+
+export const getImageMessages = async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("chat_messages")
+      .select("*")
+      .eq("type", "image")
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    res.json({ data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

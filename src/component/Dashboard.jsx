@@ -6,6 +6,7 @@ import RFQsPage from './Pages/RFQs/RFQsPage';
 import UsersPage from './Pages/Users/UsersPage';
 import BidsPage from './Pages/Bids/BidsPage';
 import AudioMessagesPage from './Pages/AudioMessages/AudioMessagesPage';
+import ImageMessagesPage from './Pages/ImageMessages/ImageMessagesPage';
 
 const Dashboard = () => {
   return (
@@ -20,6 +21,7 @@ const Dashboard = () => {
               <Route path="/users" element={<UsersPage />} />
               <Route path="/bids" element={<BidsPage />} />
               <Route path="/audio-messages" element={<AudioMessagesPage />} />
+              <Route path='/image-messages' element={<ImageMessagesPage/>}/>
               {/* Add more routes as needed */}
             </Routes>
           </div>
